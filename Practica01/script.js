@@ -1,5 +1,7 @@
 let tasks = [];
 
+const done = new Audio("done.mp3");
+const undone = new Audio("undone.mp3");
 const taskToDoContainer = document.getElementById("todoListContainer");
 const doneListContainer = document.getElementById("doneListContainer");
 const addTaskButton = document.getElementById("addTaskButton");
@@ -25,9 +27,12 @@ function addNewTask(text) {
 	addTaskToContainer(task);
 	syncTasksToLocalStorage();
 }
-function doneTask(id) {
+function toggleDoneTask(id) {
 	const task = tasks.find((task) => task.id === id);
-	task.done = true;
+	task.done = !task.done;
+
+	_ = task.done ? done.play() : undone.play();
+
 	removeTaskFromContainer(id);
 	addTaskToContainer(task);
 	syncTasksToLocalStorage();
@@ -37,8 +42,8 @@ function addTaskToContainer({ id, value, done }) {
 	const container = done ? doneListContainer : taskToDoContainer;
 
 	container.innerHTML += `
-	<div class="todo-item ${done ? 'done' : ''}" id="task-item-${id}" onclick="doneTask(${id})">
-		<input type="checkbox" name="" ${done ? 'checked disabled' : ''} />
+	<div class="todo-item ${done ? 'done' : ''}" id="task-item-${id}" onclick="toggleDoneTask(${id})">
+		<input type="checkbox" name="" ${done ? 'checked' : ''} />
 		<label for="">${value}</label>
 	</div>`;
 }
@@ -47,6 +52,17 @@ function removeTaskFromContainer(id) {
 	taskItem.remove();
 }
 function init() {
+
+	if ("serviceWorker" in navigator) {
+		navigator.serviceWorker.register("sw.js").then(function (registration) {
+			console.log("SW registrado correctamente");
+		}, function (error) {
+			console.log("SW no registrado correctamente", error);
+		});
+	} else {
+		console.log("Error");
+	}
+
 	const today = new Date();
 
 	const months = [

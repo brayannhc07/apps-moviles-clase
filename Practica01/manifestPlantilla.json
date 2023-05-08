@@ -1,0 +1,28 @@
+{
+  "name": "Nombre de la app",
+  "short_name": "Nombre corto",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ff88ff",
+  "lang": "es",
+  "scope": "/",
+  "description": "",
+  "theme_color": "#40C090",
+  "icons": [
+    {
+      "src": "pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "pwa-225x225.png",
+      "sizes": "225x225",
+      "type": "image/png"
+    },
+    {
+      "src": "pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
