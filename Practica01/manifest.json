@@ -1,11 +1,11 @@
 {
   "name": "TODO List App",
   "short_name": "TODO App",
-  "start_url": "Practica01/",
+  "start_url": "/Practica01/",
   "display": "standalone",
   "background_color": "#ff88ff",
   "lang": "es",
-  "scope": "Practica01/",
+  "scope": "/Practica01/",
   "description": "",
   "theme_color": "#40C090",
   "icons": [
